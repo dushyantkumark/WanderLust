@@ -7,6 +7,7 @@ services:
       - ./backend/data:/data
     ports:
       - "27017:27017"
+    command: ["sh", "-c", "mongoimport --host mongodb --db wanderlust --collection posts --file /data/sample_posts.json --jsonArray"]  
 
   backend:
     container_name: backend
