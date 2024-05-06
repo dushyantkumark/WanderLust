@@ -25,6 +25,21 @@ services:
       - ./frontend/.env.sample
     ports:
       - "5173:5173"
+    depends_on:
+      - mongodb
+      - frontend
 
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - mongodb
+      - backend
+      - frontend
+  
 volumes:
   data:
